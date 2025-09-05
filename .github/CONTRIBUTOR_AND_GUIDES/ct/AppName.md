@@ -52,7 +52,8 @@ source <(curl -s https://raw.githubusercontent.com/[USER]/[REPO]/refs/heads/[BRA
 Final script:
 
 ```bash
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
+HELPER_SCRIPTS_ROOT="${HELPER_SCRIPTS_ROOT:-"https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main"}"
+source <(curl -fsSL $HELPER_SCRIPTS_ROOT/misc/build.func)
 ```
 
 > [!CAUTION]

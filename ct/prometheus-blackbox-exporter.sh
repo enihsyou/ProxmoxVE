@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
+HELPER_SCRIPTS_ROOT="${HELPER_SCRIPTS_ROOT:-"https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main"}"
+source <(curl -fsSL $HELPER_SCRIPTS_ROOT/misc/build.func)
 # Copyright (c) 2021-2025 community-scripts ORG
 # Author: Marfnl
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE

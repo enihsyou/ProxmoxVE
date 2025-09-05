@@ -8,12 +8,14 @@
 # This sets verbose mode if the global variable is set to "yes"
 # if [ "$VERBOSE" == "yes" ]; then set -x; fi
 
+HELPER_SCRIPTS_ROOT="${HELPER_SCRIPTS_ROOT:-"https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main"}"
+
 if command -v curl >/dev/null 2>&1; then
-  source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/core.func)
+  source <(curl -fsSL $HELPER_SCRIPTS_ROOT/misc/core.func)
   load_functions
   #echo "(create-lxc.sh) Loaded core.func via curl"
 elif command -v wget >/dev/null 2>&1; then
-  source <(wget -qO- https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/core.func)
+  source <(wget -qO- $HELPER_SCRIPTS_ROOT/misc/core.func)
   load_functions
   #echo "(create-lxc.sh) Loaded core.func via wget"
 fi

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
+HELPER_SCRIPTS_ROOT="${HELPER_SCRIPTS_ROOT:-"https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main"}"
+source <(curl -fsSL $HELPER_SCRIPTS_ROOT/misc/build.func)
 # Copyright (c) 2021-2025 tteck
 # Author: tteck | Co-Author: MickLesk (Canbiz)
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
@@ -20,6 +21,16 @@ color
 catch_errors
 
 function update_script() {
+  header_info
+  check_container_storage
+  check_container_resources
+  if [[ ! -d /etc/rabbitmq ]]; then
+    msg_error "No ${APP} Installation Found!"
+    exit
+  fi
+  msg_info "Stopping ${APP} Service"
+  systemctl stop rabbitmq-server
+  msg_ok "Stopped ${APP} Service"
   header_info
   check_container_storage
   check_container_resources
