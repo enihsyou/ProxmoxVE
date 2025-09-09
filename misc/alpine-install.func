@@ -110,6 +110,13 @@ motd_ssh() {
   echo -e "echo -e \"${TAB}${HOSTNAME}${YW} Hostname: ${GN}\$(hostname)${CL}\"" >>"$PROFILE_FILE"
   echo -e "echo -e \"${TAB}${INFO}${YW} IP Address: ${GN}\$(ip -4 addr show eth0 | awk '/inet / {print \$2}' | cut -d/ -f1 | head -n 1)${CL}\"" >>"$PROFILE_FILE"
 
+  PROFILE_FILE="/etc/profile.d/01_ps1.sh"
+  echo 'case "$TERM" in' >"$PROFILE_FILE"
+  echo "  *color)" >>"$PROFILE_FILE"
+  echo "    PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >>"$PROFILE_FILE"
+  echo "    ;;" >>"$PROFILE_FILE"
+  echo "esac" >>"$PROFILE_FILE"
+
   # Configure SSH if enabled
   if [[ "${SSH_ROOT}" == "yes" ]]; then
     # Enable sshd service
