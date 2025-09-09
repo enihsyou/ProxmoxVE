@@ -778,7 +778,11 @@ advanced_settings() {
     exit_script
   fi
 
-  SSH_AUTHORIZED_KEY="$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "SSH Authorized key for root (leave empty for none)" 8 58 --title "SSH Key" 3>&1 1>&2 2>&3)"
+  SSH_AUTHORIZED_KEY="$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "SSH Authorized key for root (leave empty for none, 'host' for inherit from host)" 8 58 "host" --title "SSH Key" 3>&1 1>&2 2>&3)"
+
+  if [[ "${SSH_AUTHORIZED_KEY}" == "host" ]]; then
+    SSH_AUTHORIZED_KEY="$(tail -n +2 /etc/pve/priv/authorized_keys)"
+  fi
 
   if [[ -z "${SSH_AUTHORIZED_KEY}" ]]; then
     SSH_AUTHORIZED_KEY=""
@@ -1320,11 +1324,8 @@ EOF
   : "${tz:=Etc/UTC}"
   if [ "$var_os" == "alpine" ]; then
     sleep 3
-    pct exec "$CTID" -- /bin/sh -c 'cat <<EOF >/etc/apk/repositories
-http://dl-cdn.alpinelinux.org/alpine/latest-stable/main
-http://dl-cdn.alpinelinux.org/alpine/latest-stable/community
-EOF'
     pct exec "$CTID" -- ash -c "apk add bash newt curl openssh nano mc ncurses jq >/dev/null"
+    pct exec "$CTID" -- ash -c "setup-timezone -z $tz"
   else
     sleep 3
     pct exec "$CTID" -- bash -c "sed -i '/$LANG/ s/^# //' /etc/locale.gen"
