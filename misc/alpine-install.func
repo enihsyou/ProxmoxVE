@@ -120,11 +120,7 @@ motd_ssh() {
   # Configure SSH if enabled
   if [[ "${SSH_ROOT}" == "yes" ]]; then
     # Enable sshd service
-    $STD rc-update add sshd
-    # Allow root login via SSH
-    sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
-    # Start the sshd service
-    $STD /etc/init.d/sshd start
+    $STD setup-sshd -c dropbear
   fi
 }
 

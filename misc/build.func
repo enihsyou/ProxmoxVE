@@ -1324,7 +1324,7 @@ EOF
   : "${tz:=Etc/UTC}"
   if [ "$var_os" == "alpine" ]; then
     sleep 3
-    pct exec "$CTID" -- ash -c "apk add bash newt curl openssh nano mc ncurses jq >/dev/null"
+    pct exec "$CTID" -- ash -c "apk add bash curl >/dev/null"
     pct exec "$CTID" -- ash -c "setup-timezone -z $tz"
   else
     sleep 3
