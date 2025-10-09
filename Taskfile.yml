@@ -1,0 +1,9 @@
+version: '3'
+tasks:
+  rsync:
+    cmds:
+    - rsync -avzh -CP --rsync-path '//bin/rsync' -e "C:\msys64\usr\bin\ssh.exe"
+      . enihsyou.synology.me:/volume2/pve/helper-scripts/
+
+# PVE usage:
+# bash -c "$(curl -fsSL https://pve-files.enihsyou.synology.me/helper-scripts/ct/alpine.sh)"
