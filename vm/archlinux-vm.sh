@@ -12,10 +12,10 @@ function header_info {
   cat <<"EOF"
     ___              __       __    _                     _    ____  ___
    /   |  __________/ /_     / /   (_)___  __  ___  __   | |  / /  |/  /
-  / /| | / ___/ ___/ __ \   / /   / / __ \/ / / / |/_/   | | / / /|_/ / 
- / ___ |/ /  / /__/ / / /  / /___/ / / / / /_/ />  <     | |/ / /  / /  
-/_/  |_/_/   \___/_/ /_/  /_____/_/_/ /_/\__,_/_/|_|     |___/_/  /_/   
-                                                                        
+  / /| | / ___/ ___/ __ \   / /   / / __ \/ / / / |/_/   | | / / /|_/ /
+ / ___ |/ /  / /__/ / / /  / /___/ / / / / /_/ />  <     | |/ / /  / /
+/_/  |_/_/   \___/_/ /_/  /_____/_/_/ /_/\__,_/_/|_|     |___/_/  /_/
+
 EOF
 }
 header_info
@@ -464,7 +464,7 @@ fi
 msg_ok "Using ${CL}${BL}$STORAGE${CL} ${GN}for Storage Location."
 msg_ok "Virtual Machine ID is ${CL}${BL}$VMID${CL}."
 msg_info "Retrieving the URL for the Arch Linux .iso File"
-URL=https://geo.mirror.pkgbuild.com/iso/latest/archlinux-x86_64.iso
+URL=https://mirrors.cernet.edu.cn/archlinux/iso/latest/archlinux-x86_64.iso
 sleep 2
 msg_ok "${CL}${BL}${URL}${CL}"
 curl -f#SL -o "$(basename "$URL")" "$URL"
@@ -519,7 +519,7 @@ DESCRIPTION=$(
       <img src='https://img.shields.io/badge/&#x2615;-Buy us a coffee-blue' alt='spend Coffee' />
     </a>
   </p>
-  
+
   <span style='margin: 0 10px;'>
     <i class="fa fa-github fa-fw" style="color: #f5f5f5;"></i>
     <a href='https://github.com/community-scripts/ProxmoxVE' target='_blank' rel='noopener noreferrer' style='text-decoration: none; color: #00617f;'>GitHub</a>
