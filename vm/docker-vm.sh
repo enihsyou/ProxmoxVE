@@ -457,6 +457,14 @@ else
 fi
 msg_ok "Using ${CL}${BL}$STORAGE${CL} ${GN}for Storage Location."
 msg_ok "Virtual Machine ID is ${CL}${BL}$VMID${CL}."
+msg_info "Retrieving the URL for the Debian 12 Qcow2 Disk Image"
+URL="https://mirrors.cernet.edu.cn/debian-cdimage/cloud/bookworm/latest/debian-12-nocloud-$(dpkg --print-architecture).qcow2"
+sleep 2
+msg_ok "${CL}${BL}${URL}${CL}"
+curl -f#SL -o "$(basename "$URL")" "$URL"
+echo -en "\e[1A\e[0K"
+FILE=$(basename $URL)
+msg_ok "Downloaded ${CL}${BL}${FILE}${CL}"
 
 # ==============================================================================
 # PREREQUISITES
@@ -530,8 +538,8 @@ if virt-customize -a "$WORK_FILE" --install qemu-guest-agent,curl,ca-certificate
   msg_ok "Installed base packages"
 
   msg_info "Installing Docker (this may take 2-5 minutes)"
-  if virt-customize -q -a "$WORK_FILE" --run-command "curl -fsSL https://get.docker.com | sh" >/dev/null 2>&1 &&
-    virt-customize -q -a "$WORK_FILE" --run-command "systemctl enable docker" >/dev/null 2>&1; then
+  if virt-customize -q -a "$WORK_FILE" --run-command "curl -fsSL https://get.docker.com | sh" >/dev/null 2>&1 \
+    && virt-customize -q -a "$WORK_FILE" --run-command "systemctl enable docker" >/dev/null 2>&1; then
     msg_ok "Installed Docker"
 
     msg_info "Configuring Docker daemon"
@@ -717,9 +725,9 @@ VM_IP=""
 if [ "$START_VM" == "yes" ]; then
   set +e
   for i in {1..10}; do
-    VM_IP=$(qm guest cmd "$VMID" network-get-interfaces 2>/dev/null |
-      jq -r '.[] | select(.name != "lo") | ."ip-addresses"[]? | select(."ip-address-type" == "ipv4") | ."ip-address"' 2>/dev/null |
-      grep -v "^127\." | head -1) || true
+    VM_IP=$(qm guest cmd "$VMID" network-get-interfaces 2>/dev/null \
+      | jq -r '.[] | select(.name != "lo") | ."ip-addresses"[]? | select(."ip-address-type" == "ipv4") | ."ip-address"' 2>/dev/null \
+      | grep -v "^127\." | head -1) || true
     [ -n "$VM_IP" ] && break
     sleep 3
   done

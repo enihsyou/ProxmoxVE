@@ -523,9 +523,9 @@ fi
 
 msg_info "Retrieving the URL for the Debian 13 Qcow2 Disk Image"
 if [ "$CLOUD_INIT" == "yes" ]; then
-  URL=https://cloud.debian.org/images/cloud/trixie/latest/debian-13-genericcloud-amd64.qcow2
+  URL=https://mirrors.cernet.edu.cn/debian-cdimage/cloud/trixie/latest/debian-13-genericcloud-amd64.qcow2
 else
-  URL=https://cloud.debian.org/images/cloud/trixie/latest/debian-13-nocloud-amd64.qcow2
+  URL=https://mirrors.cernet.edu.cn/debian-cdimage/cloud/trixie/latest/debian-13-nocloud-amd64.qcow2
 fi
 sleep 2
 msg_ok "${CL}${BL}${URL}${CL}"
