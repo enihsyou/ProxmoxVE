@@ -62,7 +62,7 @@ The modern template includes:
 
 ```bash
 #!/usr/bin/env bash
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
+source <(curl -fsSL https://pve-files.enihsyou.synology.me/helper-scripts/misc/build.func)
 # (Note: setup-fork.sh changes this URL to point to YOUR fork during development)
 ```
 

@@ -152,7 +152,7 @@ When building or testing scripts, you can use the `dev_mode` variable to enable 
 **Usage**:
 ```bash
 # Example: Run with trace and keep the container even if it fails
-dev_mode="trace,keep" bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/myapp.sh)"
+dev_mode="trace,keep" bash -c "$(curl -fsSL https://pve-files.enihsyou.synology.me/helper-scripts/ct/myapp.sh)"
 ```
 
 ### Available Flags:

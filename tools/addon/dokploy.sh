@@ -14,10 +14,10 @@ if ! command -v curl &>/dev/null; then
     apt-get install -y curl >/dev/null 2>&1
   fi
 fi
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/core.func)
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/tools.func)
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/error_handler.func)
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/api.func) 2>/dev/null || true
+source <(curl -fsSL https://pve-files.enihsyou.synology.me/helper-scripts/misc/core.func)
+source <(curl -fsSL https://pve-files.enihsyou.synology.me/helper-scripts/misc/tools.func)
+source <(curl -fsSL https://pve-files.enihsyou.synology.me/helper-scripts/misc/error_handler.func)
+source <(curl -fsSL https://pve-files.enihsyou.synology.me/helper-scripts/misc/api.func) 2>/dev/null || true
 declare -f init_tool_telemetry &>/dev/null && init_tool_telemetry "dokploy" "addon"
 
 # Enable error handling
